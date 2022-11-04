@@ -9,15 +9,13 @@ async function getPoke(url) {
 
 }
 
-async function renderPage(pokemon_page) {
+/*Hàm này sẽ dùng để hiển thị ra pokemon*/ async function renderPage(pokemon_page /* mảng chứa pokemon trong 1 trang */) {
 
-    page = document.getElementById("list_pokemon");
-    page.innerHTML = ''
+    page = document.getElementById("list_pokemon");//lấy id đựng danh sách pokemon
+    page.innerHTML = ''//xóa pokemon cũ đi
 
     for (let i = 0; i < pokemon_page.length; i++) {
-
-
-        if (pokemon_page[i]) {
+        if (pokemon_page[i] != undefined /*tại sẽ có những mảng ko có pokenmon (mảng ko có đủ số pokemon sẽ hiển thị là undefined)*/) {
 
             poke = await getPoke(pokemon_page[i].url)
             img =  poke.sprites.other.dream_world.front_default 
@@ -35,16 +33,16 @@ async function renderPage(pokemon_page) {
 }
 
 
-async function main(pokemon_in_page) {
+async function main(pokemon_in_page /*số lượng pokemon tỏng 1 trang*/) {
     list_poke = await getList()
 
-    arrayPokemon = list_poke.results.slice(0, 50)
+    arrayPokemon = list_poke.results.slice(0, 50)/* số lượng pokemon lấy*/
 
-    const array_Page = [];
+    const array_Page = [];/*mảng này sẽ chứa các trang pokemon*/
 
 
     for (let i = 0; i < arrayPokemon.length; i = i + pokemon_in_page) {
-        list_poke_page = [];
+        list_poke_page = [];//mảng này chưa pokemon trong 1 trang
         for (let j = 0; j < pokemon_in_page; j++) {
             list_poke_page.push(arrayPokemon[i + j]);
         }
@@ -62,10 +60,12 @@ async function main(pokemon_in_page) {
         list_btn.innerHTML += btn
     }
 
+    //chỗ này để hiển thị trang đầu tiên (lúc mới tải trang)
     let pokemon_page = array_Page[0];
 
     renderPage(pokemon_page)
 
+    //đoạn này sẽ hiển thị ra các button
     for (let i = 0; i < array_Page.length; i++) {
         const button = document.getElementById(`btn_change_${i}`)
         button.addEventListener("click", () => {
