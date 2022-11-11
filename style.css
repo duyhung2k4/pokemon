@@ -12,3 +12,14 @@
 li {
     list-style: none;
 }
+
+#box {
+    position: fixed;
+    display: none;
+    height: 10%;
+    margin-left: 40%;
+    margin-top: 20%;
+    width: 20%;
+    color: white;
+    background-color: black;
+}
