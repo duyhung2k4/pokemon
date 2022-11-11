@@ -14,6 +14,7 @@ async function renderPage(pokemon_page /* mảng chứa pokemon trong 1 trang */
     page = document.getElementById("list_pokemon");//lấy id đựng danh sách pokemon
     page.innerHTML = ''//xóa pokemon cũ đi
 
+    //chỗ này là thêm thẻ pokemon vào trang web
     for (let i = 0; i < pokemon_page.length; i++) {
         if (pokemon_page[i] != undefined /*tại sẽ có những mảng ko có pokenmon (mảng ko có đủ số pokemon sẽ hiển thị là undefined)*/) {
 
@@ -31,8 +32,7 @@ async function renderPage(pokemon_page /* mảng chứa pokemon trong 1 trang */
         }
     }
 
-    console.log(pokemon_page);
-
+    //chỗ này là thêm 2 sự kiện mouseover và mouseleave cho mỗi thẻ
     for(let i = 0; i < pokemon_in_page; i++) {
         document.getElementById(`${cout}${i}`).addEventListener("mouseover", (e) => {
             const box = document.getElementById("box");
